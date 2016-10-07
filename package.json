@@ -1,11 +1,12 @@
 {
   "name": "my-screen-electron",
+  "productName": "MyScreen",
   "version": "0.1.0",
   "description": "MyScreen Terminal",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager . --platform=linux --arch=all --out ~/Desktop --overwrite"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,10 @@
   },
   "homepage": "https://github.com/gustavosobral/my-screen-electron#readme",
   "devDependencies": {
-    "electron": "^1.4.3"
+    "electron": "^1.4.3",
+    "electron-packager": "^8.1.0"
+  },
+  "dependencies": {
+    "pusher-js": "^3.2.1"
   }
 }
