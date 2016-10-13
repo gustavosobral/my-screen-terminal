@@ -3,10 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>MyScreen</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="css/bootstrap-material-design.min.css" rel="stylesheet" type="text/css"/>
+  <link href="css/ripples.min.css" rel="stylesheet" type="text/css"/>
   <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/material.min.js"></script>
+  <script type="text/javascript" src="js/ripples.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <script>if (window.module) module = window.module;</script>
 </head>
 
 <body>
-  <h1>Bem Vindo!</h1>
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-sm-10 col-sm-offset-1">
+        <img class="logo" alt="MyScreen" src="img/myscreen.svg">
+        <br>
+        <br>
+        <h2>Um novo jeito de fazer TV corporativa!</h2>
+        <br>
+        <a class="btn btn-raised btn-primary btn-lg" href="login.html">
+          Login
+        </a>
+        <a class="btn btn-raised btn-success btn-lg" href="#more">
+          Play
+        </a>
+      </div>
+    </div>
+  </div>  
 </body>
 </html>

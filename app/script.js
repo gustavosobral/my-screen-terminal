@@ -1,0 +1,61 @@
+const Pusher = require('pusher-js/node')
+
+var pusherData = {
+  encrypted: true,
+  authEndpoint: '',
+  auth: {
+    headers: {}
+  }
+}
+
+var newPlaylistEvent = function(data) {
+  console.log(data)
+}
+
+$(document).ready(function() {
+
+  $.material.init();
+  $('#login-alert').hide();
+
+  $('form').on('submit', function() {
+    event.preventDefault();
+    $('#login-alert').hide();
+
+    var $form = $(this);
+
+    var terminal = {
+      'title': $form.find('input[name="terminal[title]"]').val().toString(),
+      'password': $form.find('input[name="terminal[password]"]').val().toString(),
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: '',
+      headers: { 'X-Api-Token': '' },
+      data: terminal,
+      dataType: 'json',
+      cache: false,
+      beforeSend: function() {
+        $('button').prop('disabled', true);
+      }
+    }).done(function(data) {
+      $('button').prop('disabled', false);
+
+      pusherData.auth.headers = {
+        'X-Api-Token': '',
+        'X-Terminal-Token': data.token,
+        'X-Terminal-Title': data.title
+      }
+
+      const pusher = new Pusher('', pusherData);
+      pusher.subscribe('presence-user-' + data.owner_id);
+
+      var privateChannel = pusher.subscribe('private-terminal-' + data.id);
+      privateChannel.bind('new_playlist', newPlaylistEvent);
+    }).fail(function() {
+      $('#login-alert').show();
+      $('button').prop('disabled', false);
+    });
+  });
+
+});
