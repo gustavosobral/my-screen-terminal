@@ -1,3 +1,17 @@
+const Pusher = require('pusher-js/node')
+
+var pusherData = {
+  encrypted: true,
+  authEndpoint: '',
+  auth: {
+    headers: {}
+  }
+}
+
+var newPlaylistEvent = function(data) {
+  console.log(data)
+}
+
 $(document).ready(function() {
 
   $.material.init();
@@ -16,7 +30,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'POST',
-      url: 'http://localhost:3000/api/v1/login',
+      url: '',
       headers: { 'X-Api-Token': '' },
       data: terminal,
       dataType: 'json',
@@ -24,9 +38,20 @@ $(document).ready(function() {
       beforeSend: function() {
         $('button').prop('disabled', true);
       }
-    }).done(function() {
-      alert('Done!');
+    }).done(function(data) {
       $('button').prop('disabled', false);
+
+      pusherData.auth.headers = {
+        'X-Api-Token': '',
+        'X-Terminal-Token': data.token,
+        'X-Terminal-Title': data.title
+      }
+
+      const pusher = new Pusher('', pusherData);
+      pusher.subscribe('presence-user-' + data.owner_id);
+
+      var privateChannel = pusher.subscribe('private-terminal-' + data.id);
+      privateChannel.bind('new_playlist', newPlaylistEvent);
     }).fail(function() {
       $('#login-alert').show();
       $('button').prop('disabled', false);
