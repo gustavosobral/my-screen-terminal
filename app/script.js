@@ -1,7 +1,12 @@
 $(document).ready(function() {
 
+  $.material.init();
+  $('#login-alert').hide();
+
   $('form').on('submit', function() {
     event.preventDefault();
+    $('#login-alert').hide();
+
     var $form = $(this);
 
     var terminal = {
@@ -16,10 +21,15 @@ $(document).ready(function() {
       data: terminal,
       dataType: 'json',
       cache: false,
+      beforeSend: function() {
+        $('button').prop('disabled', true);
+      }
     }).done(function() {
       alert('Done!');
+      $('button').prop('disabled', false);
     }).fail(function() {
-      alert('Fail!');
+      $('#login-alert').show();
+      $('button').prop('disabled', false);
     });
   });
 

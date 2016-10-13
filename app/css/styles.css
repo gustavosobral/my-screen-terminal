@@ -78,12 +78,15 @@ body {
 
 h2 { font-weight: 100; }
 
+.btn { margin: 15px; }
+
 .btn.btn-raised.btn-primary { background-color: #0194d9; }
 .btn.btn-raised:not(.btn-link):hover.btn-primary,
 .btn.btn-raised:not(.btn-link):focus.btn-primary,
 .btn.btn-raised:not(.btn-link):active.btn-primary { background-color: #0186c5; }
 
-.btn { margin: 15px; }
+.form-group.is-focused label { color: #0194d9; }
+.form-group.is-focused .form-control { background-image: linear-gradient(#0194d9, #0194d9), linear-gradient(#D2D2D2, #D2D2D2); }
 
 .logo { margin: 20% 10% 5% 10%; }
 
