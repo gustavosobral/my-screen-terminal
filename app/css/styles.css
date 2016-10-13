@@ -72,7 +72,9 @@
 
 /* General Styles */
 
-body { background-color: #fff; }
+body { 
+  background-color: #EEEEEE;
+  font-weight: 100; }
 
 h2 { font-weight: 100; }
 
@@ -81,6 +83,9 @@ h2 { font-weight: 100; }
 .btn.btn-raised:not(.btn-link):focus.btn-primary,
 .btn.btn-raised:not(.btn-link):active.btn-primary { background-color: #0186c5; }
 
-.btn { margin: 0 15px; }
+.btn { margin: 15px; }
 
 .logo { margin: 20% 10% 5% 10%; }
+
+.login-card  { margin: 10% 10% 5% 10%; }
+.login-card .form-group { margin: 15px 0 0 0; }
