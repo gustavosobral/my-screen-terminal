@@ -9,7 +9,11 @@ var pusherData = {
 }
 
 var newPlaylistEvent = function(data) {
-  console.log(data)
+  if($.isEmptyObject(data)) {
+    localStorage.setItem('playlist', localStorage.getItem('playlistDefault'));
+  } else {
+    localStorage.setItem('playlist', JSON.stringify(data));
+  }
 }
 
 $(document).ready(function() {
@@ -42,8 +46,10 @@ $(document).ready(function() {
       beforeSend: function() {
         $('button').prop('disabled', true);
       }
-    }).done(function(data) {
-      $('button').prop('disabled', false);
+    }).done(function(data) {   
+      localStorage.setItem('terminalId', data.id);
+      localStorage.setItem('terminalToken', data.token);
+      localStorage.setItem('terminalTitle', data.title);
 
       pusherData.auth.headers = {
         'X-Api-Token': '',
@@ -56,6 +62,8 @@ $(document).ready(function() {
 
       var privateChannel = pusher.subscribe('private-terminal-' + data.id);
       privateChannel.bind('new_playlist', newPlaylistEvent);
+
+      $('button').prop('disabled', false);
     }).fail(function() {
       $('#login-alert').show();
       $('button').prop('disabled', false);
