@@ -1,0 +1,13 @@
+{
+  "id": 0,
+  "title": "Playlist padrão",
+  "duration": 29.6,
+  "playlist_items": [
+    {
+      "duration": 29.6,
+      "file_url": "https://s3.amazonaws.com/my-screen-staging/sample_video.mp4",
+      "position": 0,
+      "type": "Video"
+    }
+  ]
+}
