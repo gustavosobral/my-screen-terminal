@@ -8,12 +8,28 @@ var pusherData = {
   }
 }
 
+function sendNotified() {
+  $.ajax({
+    type: 'POST',
+    url: '',
+    headers: {
+      'X-Api-Token': '',
+      'X-Terminal-Token': localStorage.getItem('terminalToken'),
+      'X-Terminal-Title': localStorage.getItem('terminalTitle')
+    },
+    data: { "id": localStorage.getItem('terminalId') },
+    dataType: 'json',
+    cache: false
+  });
+}
+
 var newPlaylistEvent = function(data) {
   if($.isEmptyObject(data)) {
     localStorage.setItem('playlist', localStorage.getItem('playlistDefault'));
   } else {
     localStorage.setItem('playlist', JSON.stringify(data));
   }
+  sendNotified();
 }
 
 $(document).ready(function() {
