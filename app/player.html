@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MyScreen Player</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="css/bootstrap-material-design.min.css" rel="stylesheet" type="text/css"/>
+  <link href="css/ripples.min.css" rel="stylesheet" type="text/css"/>
+  <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/material.min.js"></script>
+  <script type="text/javascript" src="js/ripples.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <script>if (window.module) module = window.module;</script>
+</head>
+
+<body>
+
+  <video id="player-video" autoplay="autoplay" controls>
+  </video>
+  <img id="player-image">
+
+  <script>
+    var i = 0;
+    var playlist = JSON.parse(localStorage.getItem('playlist'));
+    var videoPlayer = document.getElementById("player-video");
+    var imagePlayer = document.getElementById("player-image");
+    
+    var iterate = function () {
+      if (i == playlist.playlist_items.length) {
+        i = 0;
+      }
+
+      playlist_item = playlist.playlist_items[i];
+
+      if (playlist_item.type == "Video") {
+        imagePlayer.style.display = 'none';
+        videoPlayer.style.display = 'block';
+        videoPlayer.src = playlist_item.file_url;
+        videoPlayer.play();
+      } else {
+        videoPlayer.style.display = 'none';
+        imagePlayer.style.display = 'block';
+        imagePlayer.src = playlist_item.file_url;
+        setTimeout(iterate, 10000);
+      }
+
+      i++;
+    }
+
+    videoPlayer.onended = function () {
+      iterate();
+    }
+
+    iterate();
+
+  </script>
+</body>
+</html>

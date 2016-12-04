@@ -80,6 +80,7 @@ $(document).ready(function() {
       privateChannel.bind('new_playlist', newPlaylistEvent);
 
       $('button').prop('disabled', false);
+      window.location.href = 'index.html';
     }).fail(function() {
       $('#login-alert').show();
       $('button').prop('disabled', false);

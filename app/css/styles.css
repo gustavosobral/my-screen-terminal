@@ -93,3 +93,11 @@ h2 { font-weight: 100; }
 .login { margin: 5% 10% 5% 10%; }
 .login .well { margin-top: 5%; }
 .login .form-group { margin: 15px 0 0 0; }
+
+/* Video */
+
+#player-video, #player-image {
+  position: fixed; right: 0; bottom: 0;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto; z-index: -100;
+}

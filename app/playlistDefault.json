@@ -1,13 +1,25 @@
 {
   "id": 0,
   "title": "Playlist padrão",
-  "duration": 29.6,
+  "duration": 0,
   "playlist_items": [
     {
-      "duration": 29.6,
-      "file_url": "https://s3.amazonaws.com/my-screen-staging/sample_video.mp4",
+      "duration": 0,
+      "file_url": "http://localhost:3000/uploads/video/file/2/toystory.mp4",
       "position": 0,
       "type": "Video"
-    }
+    },
+    {
+      "duration": 0,
+      "file_url": "http://localhost:3000/uploads/video/file/1/sample_video.mp4",
+      "position": 0,
+      "type": "Video"      
+    },
+    {
+      "duration": 0,
+      "file_url": "http://localhost:3000/uploads/image/file/5/DSC_0015.JPG",
+      "position": 0,
+      "type": "Image"      
+    }    
   ]
 }
