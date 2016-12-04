@@ -101,3 +101,16 @@ h2 { font-weight: 100; }
   min-width: 100%; min-height: 100%;
   width: auto; height: auto; z-index: -100;
 }
+
+/* Back to home button */
+
+.back-home {
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+  z-index: 999;
+  opacity: 0;
+  display: block;
+}
+
+.back-home:hover { opacity: 0.9; }

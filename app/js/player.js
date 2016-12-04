@@ -36,7 +36,7 @@ var iterate = function () {
     videoPlayer.style.display = 'none';
     imagePlayer.style.display = 'block';
     imagePlayer.src = playlist_item.file_url;
-    setTimeout(iterate, 5000);
+    setTimeout(iterate, 10000);
   }
 
   i++;
