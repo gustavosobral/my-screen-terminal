@@ -6,27 +6,15 @@
   "playlist_items": [
     {
       "duration": 0,
-      "file_url": "http://localhost:3000/uploads/video/file/2/toystory.mp4",
+      "file_url": "img/default_01.png",
       "position": 0,
-      "type": "Video"
+      "type": "Image"
     },
     {
       "duration": 0,
-      "file_url": "http://localhost:3000/uploads/image/file/3/PbPYzVD.jpg",
+      "file_url": "img/default_02.png",
       "position": 0,
-      "type": "Image"      
-    },
-    {
-      "duration": 0,
-      "file_url": "http://localhost:3000/uploads/video/file/1/sample_video.mp4",
-      "position": 0,
-      "type": "Video"      
-    },
-    {
-      "duration": 0,
-      "file_url": "http://localhost:3000/uploads/image/file/5/DSC_0015.JPG",
-      "position": 0,
-      "type": "Image"      
-    }    
+      "type": "Image"
+    }
   ]
 }
