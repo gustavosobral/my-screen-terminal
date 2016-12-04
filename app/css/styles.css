@@ -90,7 +90,7 @@ h2 { font-weight: 100; }
 
 .logo { margin: 20% 10% 5% 10%; }
 
-.login { margin: 5% 10% 5% 10%; }
+.login { margin-top: 5%; }
 .login .well { margin-top: 5%; }
 .login .form-group { margin: 15px 0 0 0; }
 
