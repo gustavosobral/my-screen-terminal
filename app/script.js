@@ -1,19 +1,21 @@
 const Pusher = require('pusher-js/node')
 
+var pusher;
+
 var pusherData = {
   encrypted: true,
-  authEndpoint: '',
+  authEndpoint: 'http://localhost:3000/api/v1/login_channel',
   auth: {
     headers: {}
   }
 }
 
-function sendNotified() {
+var sendNotified = function () {
   $.ajax({
     type: 'POST',
-    url: '',
+    url: 'http://localhost:3000/api/v1/notified',
     headers: {
-      'X-Api-Token': '',
+      'X-Api-Token': '28b4cf3f845dc385ca86591d3e4063459e8c12eb59730718fb2988556325c2a700b2f0ec1aa8a5cc3190b239b26d56b877667a03da272f56a727216b255aaaa0',
       'X-Terminal-Token': localStorage.getItem('terminalToken'),
       'X-Terminal-Title': localStorage.getItem('terminalTitle')
     },
@@ -21,6 +23,20 @@ function sendNotified() {
     dataType: 'json',
     cache: false
   });
+}
+
+var subscribe = function () {
+  pusherData.auth.headers = {
+    'X-Api-Token': '28b4cf3f845dc385ca86591d3e4063459e8c12eb59730718fb2988556325c2a700b2f0ec1aa8a5cc3190b239b26d56b877667a03da272f56a727216b255aaaa0',
+    'X-Terminal-Token': localStorage.getItem('terminalToken'),
+    'X-Terminal-Title': localStorage.getItem('terminalTitle')
+  }
+
+  pusher = new Pusher('02cdc5ce216d575e7d41', pusherData);
+  pusher.subscribe('presence-user-' + localStorage.getItem('terminalOwnerId'));  
+
+  var privateChannel = pusher.subscribe('private-terminal-' + localStorage.getItem('terminalId'));
+  privateChannel.bind('new_playlist', newPlaylistEvent);
 }
 
 var newPlaylistEvent = function(data) {
@@ -31,60 +47,3 @@ var newPlaylistEvent = function(data) {
   }
   sendNotified();
 }
-
-$(document).ready(function() {
-
-  $.material.init();
-  $('#login-alert').hide();
-
-  $.getJSON("playlistDefault.json", function(data) {
-    localStorage.setItem('playlistDefault', JSON.stringify(data));
-  });
-
-  $('form').on('submit', function() {
-    event.preventDefault();
-    $('#login-alert').hide();
-
-    var $form = $(this);
-
-    var terminal = {
-      'title': $form.find('input[name="terminal[title]"]').val().toString(),
-      'password': $form.find('input[name="terminal[password]"]').val().toString(),
-    }
-
-    $.ajax({
-      type: 'POST',
-      url: '',
-      headers: { 'X-Api-Token': '' },
-      data: terminal,
-      dataType: 'json',
-      cache: false,
-      beforeSend: function() {
-        $('button').prop('disabled', true);
-      }
-    }).done(function(data) {   
-      localStorage.setItem('terminalId', data.id);
-      localStorage.setItem('terminalToken', data.token);
-      localStorage.setItem('terminalTitle', data.title);
-
-      pusherData.auth.headers = {
-        'X-Api-Token': '',
-        'X-Terminal-Token': data.token,
-        'X-Terminal-Title': data.title
-      }
-
-      const pusher = new Pusher('', pusherData);
-      pusher.subscribe('presence-user-' + data.owner_id);
-
-      var privateChannel = pusher.subscribe('private-terminal-' + data.id);
-      privateChannel.bind('new_playlist', newPlaylistEvent);
-
-      $('button').prop('disabled', false);
-      window.location.href = 'index.html';
-    }).fail(function() {
-      $('#login-alert').show();
-      $('button').prop('disabled', false);
-    });
-  });
-
-});

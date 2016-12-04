@@ -1,6 +1,7 @@
 {
   "id": 0,
   "title": "Playlist padrão",
+  "updated_at": "2016-12-01T00:00:00.000-02:00",
   "duration": 0,
   "playlist_items": [
     {
@@ -8,6 +9,12 @@
       "file_url": "http://localhost:3000/uploads/video/file/2/toystory.mp4",
       "position": 0,
       "type": "Video"
+    },
+    {
+      "duration": 0,
+      "file_url": "http://localhost:3000/uploads/image/file/3/PbPYzVD.jpg",
+      "position": 0,
+      "type": "Image"      
     },
     {
       "duration": 0,
